@@ -26,10 +26,6 @@ val images: List<Int> = listOf(R.drawable.test_image,
     R.drawable.test_image5)
 @Composable
 fun AdaptiveImage() {
-    Text(text = "Imágenes",
-        style = MaterialTheme.typography.titleLarge,
-        textAlign = TextAlign.Center)
-
     LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
         item(6) {
             Column(modifier = Modifier
