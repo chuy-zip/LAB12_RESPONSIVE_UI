@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
@@ -26,13 +27,17 @@ val images: List<Int> = listOf(R.drawable.test_image,
     R.drawable.test_image5)
 @Composable
 fun AdaptiveImage() {
-    LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
+    LazyColumn(
+        modifier = Modifier
+            .padding(vertical = 4.dp)
+        ) {
         item(6) {
             Column(modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .padding(vertical = 25.dp))
-            {
+                .padding(vertical = 25.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Images()
             }
         }
