@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.laboratorio12_pp"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.laboratorio12_pp"
@@ -51,6 +51,7 @@ android {
 
 dependencies {
 
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.activity:activity-compose:1.8.0")
