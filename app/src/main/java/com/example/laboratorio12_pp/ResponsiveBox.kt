@@ -1,10 +1,9 @@
 package com.example.laboratorio12_pp
 
+import android.content.Context
 import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,25 +18,21 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
-import com.example.laboratorio12_pp.ui.theme.Laboratorio12_PPTheme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun responsiveBox(){
+fun ResponsiveBox(context: Context){
 
     ConstraintLayout(
         modifier = Modifier
             .fillMaxSize(),
-
     ) {
         val orientation = LocalConfiguration.current.orientation
         Column(
@@ -50,56 +45,35 @@ fun responsiveBox(){
 
             if (orientation == Configuration.ORIENTATION_LANDSCAPE){
 
-                Text(text = "Bienvenida a la adaptive UI, rota el telefono para ver los cambios",
-                    textAlign = TextAlign.Center)
+                Text(text = "Bienvenido a la adaptive UI, rota el teléfono para ver los cambios",
+                    textAlign = TextAlign.Center,
+                    fontSize = 25.sp)
                 //Llamar aqui a la funcion de lazy grid
-                AdaptiveGrid()
-
-                Button(
-                    onClick = {},
-                ){
-                    Text("Horizontal adaptive button")
-                }
+                AdaptiveGrid(context)
             }
 
-            else{
-                Text(text = "Bienvenida a la adaptive UI, rota el telefono para ver los cambios",
-                    textAlign = TextAlign.Center)
+            else {
+                Text(text = "Bienvenido a la adaptive UI, rota el teléfono para ver los cambios",
+                    textAlign = TextAlign.Center,
+                    fontSize = 25.sp)
 
-                //Llamar aqui a la funcion de lazy list
-                AdaptiveImage()
-
-                Button(
-                    onClick = {},
-                    modifier = Modifier
-                        .size(400.dp, 48.dp)
-
-
-                ){
-                    Text(text ="Vertical adaptive button")
-                }
-
+                //Llamar aquí a la funcion de lazy list
+                AdaptiveImage(context, memes)
             }
         }
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun AdaptiveGrid(){
+fun AdaptiveGrid(context: Context){
     LazyVerticalStaggeredGrid(
         columns = StaggeredGridCells.Fixed(3),
         verticalItemSpacing = 4.dp,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         content = {
-            items(images) { img ->
-                AsyncImage(
-                    model = img,
-                    contentScale = ContentScale.Crop,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                )
+            items(memes) { card ->
+                Cards(context, name = card.name, image = card.imageRes)
             }
         },
         modifier = Modifier
